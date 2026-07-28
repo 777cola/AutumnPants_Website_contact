@@ -59,6 +59,23 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.lang-item').forEach(item => {
       item.classList.toggle('active', item.dataset.lang === lang);
     });
+
+    // Update GooeyNav labels
+    const gooeyContainer = document.getElementById('navGooey');
+    if (gooeyContainer) {
+      const navLabelKeys = ['nav.home', 'nav.music', 'nav.travel', 'nav.photo', 'nav.sports', 'nav.resume', 'nav.contact'];
+      const gooeyLinks = gooeyContainer.querySelectorAll('nav a');
+      gooeyLinks.forEach((a, i) => {
+        if (navLabelKeys[i] && TRANSLATIONS[navLabelKeys[i]] && TRANSLATIONS[navLabelKeys[i]][lang]) {
+          a.textContent = TRANSLATIONS[navLabelKeys[i]][lang];
+        }
+      });
+      const activeLi = gooeyContainer.querySelector('li.active');
+      const effectText = gooeyContainer.querySelector('.effect.text');
+      if (effectText && activeLi) {
+        effectText.textContent = activeLi.textContent;
+      }
+    }
   }
 
   const langToggle = document.getElementById('langToggle');
