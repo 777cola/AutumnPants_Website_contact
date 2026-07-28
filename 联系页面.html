@@ -353,16 +353,18 @@
 <body>
   <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-  <!-- Nav -->
+  <!-- ============ NAVBAR ============ -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="https://qijunhao.com" class="nav-logo">Qi JunHao<span class="dot">.</span></a>
-      <div class="nav-gooey" id="navGooey" data-full='[{"label":"Home","href":"https://qijunhao.com"},{"label":"Music","href":"https://music.qijunhao.com"},{"label":"Travel","href":"https://travel.qijunhao.com"},{"label":"Photo","href":"https://photography.qijunhao.com"},{"label":"Sports","href":"https://sport.qijunhao.com"},{"label":"Resume","href":"https://resume.qijunhao.com"},{"label":"Contact","href":"https://contact.qijunhao.com"}]'></div>
+      <a href="/" class="nav-logo">Qi JunHao<span class="dot">.</span></a>
+
+      <div class="nav-gooey" id="navGooey"></div>
+
       <div class="nav-right">
         <div class="lang-toggle" id="langToggle">
-          <span class="lang-item active" data-lang="zh">简</span>
-          <span class="lang-item" data-lang="en">EN</span>
-          <span class="lang-item" data-lang="hant">繁</span>
+          <span class="lang-item" data-lang="zh" data-full="简体中文">简</span>
+          <span class="lang-item" data-lang="en" data-full="English">EN</span>
+          <span class="lang-item" data-lang="hant" data-full="繁體中文">繁</span>
         </div>
         <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -489,29 +491,52 @@
 
   <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
 
+  <script>
+  window.PAGE_I18N = {
+    zh: {
+      'wechat.name':'微信','wechat.action':'查看二维码',
+      'instagram.name':'Instagram','instagram.action':'打开主页',
+      'github.name':'GitHub','github.action':'打开主页',
+      'qr.title':'扫码添加好友','qr.desc':'扫一扫二维码，加我为微信好友',
+      'footer.text':'© 2026 戚俊皓',
+    },
+    en: {
+      'wechat.name':'WeChat','wechat.action':'Show QR Code',
+      'instagram.name':'Instagram','instagram.action':'Open Profile',
+      'github.name':'GitHub','github.action':'Open Profile',
+      'qr.title':'Scan to Add Friend','qr.desc':'Scan the QR code to add me on WeChat',
+      'footer.text':'© 2026 Qi JunHao',
+    },
+    hant: {
+      'wechat.name':'微信','wechat.action':'查看二維碼',
+      'instagram.name':'Instagram','instagram.action':'打開主頁',
+      'github.name':'GitHub','github.action':'打開主頁',
+      'qr.title':'掃碼新增好友','qr.desc':'掃一掃二維碼，加我為微信好友',
+      'footer.text':'© 2026 戚俊皓',
+    }
+  };
+  </script>
   <script src="common.js"></script>
   <script src="gooey-nav.js"></script>
   <script>
-    /* ─── GooeyNav Init ─────────────────────────────── */
-    (function() {
-      'use strict';
-      var container = document.getElementById('navGooey');
-      if (!container) return;
-      var items;
-      try { items = JSON.parse(container.getAttribute('data-full')); }
-      catch(e) { return; }
-      var activeIdx = 0;
-      var loc = window.location.href;
-      for (var i = 0; i < items.length; i++) {
-        if (items[i].href && loc.indexOf(items[i].href) !== -1) { activeIdx = i; break; }
+    document.addEventListener('DOMContentLoaded', function () {
+      var gooeyContainer = document.getElementById('navGooey');
+      if (gooeyContainer && typeof GooeyNav === 'function') {
+        window.GooeyNav(gooeyContainer, {
+          items: [
+            { label: 'Home', href: 'https://qijunhao.com' },
+            { label: 'Music', href: 'https://music.qijunhao.com' },
+            { label: 'Travel', href: 'https://travel.qijunhao.com' },
+            { label: 'Photo', href: 'https://photography.qijunhao.com' },
+            { label: 'Sports', href: 'https://sport.qijunhao.com' },
+            { label: 'Resume', href: 'https://resume.qijunhao.com' },
+            { label: 'Contact', href: 'https://contact.qijunhao.com' },
+          ],
+          animationTime: 600,
+          particleCount: 12,
+        });
       }
-      window._gooeyNav = GooeyNav(container, {
-        items: items,
-        initialActiveIndex: activeIdx,
-        particleCount: 12,
-        colors: [1, 2, 3, 1, 2, 3, 1, 4]
-      });
-    })();
+    });
   </script>
   <script>
     (function() {
