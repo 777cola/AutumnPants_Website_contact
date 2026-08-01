@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* ─── Contact Hero ───────────────────────────── */
+    html, body {
+      height: 100dvh;
+      overflow: hidden;
+    }
     body {
       display: flex;
       flex-direction: column;
@@ -24,7 +28,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 5rem 2rem 2.5rem;
+      padding: 4rem 2rem 1.5rem;
       text-align: center;
       position: relative;
     }
@@ -70,7 +74,7 @@
     .contact-sub {
       font-size: 1rem;
       color: var(--text-secondary);
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       text-wrap: balance;
     }
 
@@ -88,7 +92,7 @@
       font-weight: 600;
       transition: all var(--transition);
       text-decoration: none;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
     .contact-email:hover {
       background: var(--accent-glow);
@@ -116,7 +120,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 2rem 1.25rem;
+      padding: 1.4rem 1.25rem;
       border-radius: var(--radius);
       background: var(--surface);
       border: 1px solid var(--border);
