@@ -12,13 +12,19 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* ─── Contact Hero ───────────────────────────── */
-    .contact-hero {
+    body {
+      display: flex;
+      flex-direction: column;
       min-height: 100dvh;
+    }
+    .contact-hero {
+      flex: 1 0 auto;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 7rem 2rem 4rem;
+      padding: 5rem 2rem 2.5rem;
       text-align: center;
       position: relative;
     }
@@ -564,7 +570,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var gooeyContainer = document.getElementById('navGooey');
     if (gooeyContainer && typeof window.GooeyNav === 'function') {
-      var lang = localStorage.getItem('lang') || 'zh';
+      var lang = Prefs.get('lang') || 'zh';
       window.GooeyNav(gooeyContainer, {
         items: [
           { label: '首页', href: 'https://qijunhao.com' },
